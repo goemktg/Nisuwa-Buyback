@@ -36,7 +36,7 @@ export default function Home() {
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight drop-shadow-lg uppercase text-white">
-            Contract <span className="text-primary drop-shadow-[0_0_15px_rgba(21,195,214,0.5)]">Appraisal</span>
+            Contract <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Appraisal</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
             Paste your inventory listing below to receive an instant network-verified Nisuwa Cartel buyback valuation.
@@ -74,7 +74,7 @@ export default function Home() {
               <button
                 onClick={handleSubmit}
                 disabled={appraise.isPending || !itemsText.trim()}
-                className="w-full sm:w-auto group relative px-8 py-4 font-display font-bold uppercase tracking-widest text-sm bg-primary/10 text-primary border border-primary/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(21,195,214,0.4)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
+                className="w-full sm:w-auto group relative px-8 py-4 font-display font-bold uppercase tracking-widest text-sm bg-primary/10 text-primary border border-primary/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(218,165,32,0.4)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 <span className="relative flex items-center justify-center gap-2">

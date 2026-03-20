@@ -94,21 +94,21 @@ export default function BuybackPage() {
 
         <motion.div variants={itemVariants} className="text-center">
           <h1 className="text-3xl md:text-4xl font-display font-bold mb-3 tracking-tight uppercase text-white">
-            Buyback <span className="text-primary drop-shadow-[0_0_15px_rgba(21,195,214,0.5)]">Contract</span>
+            Buyback <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Contract</span>
           </h1>
           <p className="text-muted-foreground font-mono text-sm max-w-xl mx-auto">
             Create an in-game contract with the items below for the listed buyback value.
           </p>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="bg-primary/10 backdrop-blur-md border border-primary/30 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_40px_rgba(21,195,214,0.08)]">
+        <motion.div variants={itemVariants} className="bg-primary/10 backdrop-blur-md border border-primary/30 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_40px_rgba(218,165,32,0.08)]">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <div className="text-primary font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
                 <DollarSign className="w-4 h-4" /> Contract Value
               </div>
-              <div className="text-4xl md:text-5xl font-bold font-display tracking-tight text-white drop-shadow-[0_0_15px_rgba(21,195,214,0.6)]">
+              <div className="text-4xl md:text-5xl font-bold font-display tracking-tight text-white drop-shadow-[0_0_15px_rgba(218,165,32,0.6)]">
                 {formatIsk(parsedData.totalBuybackValue)}
               </div>
               <div className="text-xs text-muted-foreground/70 mt-2 font-mono">
@@ -117,7 +117,7 @@ export default function BuybackPage() {
             </div>
             <button
               onClick={handleCopyBuyback}
-              className="group px-8 py-4 bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/40 rounded-xl font-display font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(21,195,214,0.4)] flex items-center gap-2"
+              className="group px-8 py-4 bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/40 rounded-xl font-display font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(218,165,32,0.4)] flex items-center gap-2"
             >
               {copied ? (
                 <>
@@ -179,7 +179,7 @@ export default function BuybackPage() {
                           <td className="px-6 py-4 text-right text-muted-foreground">
                             {formatIsk(buybackPerUnit)}
                           </td>
-                          <td className="px-6 py-4 text-right font-medium text-primary drop-shadow-[0_0_5px_rgba(21,195,214,0.3)]">
+                          <td className="px-6 py-4 text-right font-medium text-primary drop-shadow-[0_0_5px_rgba(218,165,32,0.3)]">
                             {formatIsk(item.buybackPrice)}
                           </td>
                         </tr>
@@ -191,7 +191,7 @@ export default function BuybackPage() {
                       <td colSpan={5} className="px-6 py-4 text-right font-display font-bold uppercase tracking-wider text-white/80">
                         Total Buyback
                       </td>
-                      <td className="px-6 py-4 text-right font-bold text-lg text-primary drop-shadow-[0_0_8px_rgba(21,195,214,0.5)]">
+                      <td className="px-6 py-4 text-right font-bold text-lg text-primary drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]">
                         {formatIsk(parsedData.totalBuybackValue)}
                       </td>
                     </tr>

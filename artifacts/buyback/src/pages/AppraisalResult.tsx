@@ -109,13 +109,13 @@ export default function AppraisalResultPage() {
             </div>
           </div>
 
-          <div className="bg-primary/10 backdrop-blur-md border border-primary/30 rounded-2xl p-6 relative overflow-hidden group shadow-[0_0_30px_rgba(21,195,214,0.05)]">
+          <div className="bg-primary/10 backdrop-blur-md border border-primary/30 rounded-2xl p-6 relative overflow-hidden group shadow-[0_0_30px_rgba(218,165,32,0.05)]">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
             <div className="relative">
               <div className="text-primary font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
                 <DollarSign className="w-4 h-4" /> Total Buyback Value
               </div>
-              <div className="text-3xl md:text-4xl font-bold font-display tracking-tight text-white drop-shadow-[0_0_10px_rgba(21,195,214,0.6)]">
+              <div className="text-3xl md:text-4xl font-bold font-display tracking-tight text-white drop-shadow-[0_0_10px_rgba(218,165,32,0.6)]">
                 {formatIsk(parsedData.totalBuybackValue)}
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function AppraisalResultPage() {
         <motion.div variants={itemVariants} className="flex justify-center">
           <Link
             href={`/buyback?${searchString}`}
-            className="group relative px-10 py-4 font-display font-bold uppercase tracking-widest text-sm bg-primary/10 text-primary border border-primary/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(21,195,214,0.4)] transition-all duration-300 overflow-hidden inline-flex items-center gap-3"
+            className="group relative px-10 py-4 font-display font-bold uppercase tracking-widest text-sm bg-primary/10 text-primary border border-primary/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(218,165,32,0.4)] transition-all duration-300 overflow-hidden inline-flex items-center gap-3"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
             <span className="relative flex items-center gap-2">
@@ -192,7 +192,7 @@ export default function AppraisalResultPage() {
                             {(item.buybackRate * 100).toFixed(0)}%
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right font-medium text-primary drop-shadow-[0_0_5px_rgba(21,195,214,0.3)]">
+                        <td className="px-6 py-4 text-right font-medium text-primary drop-shadow-[0_0_5px_rgba(218,165,32,0.3)]">
                           {formatIsk(item.buybackPrice)}
                         </td>
                       </tr>

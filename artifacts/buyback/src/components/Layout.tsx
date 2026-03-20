@@ -27,7 +27,7 @@ export function Layout({ children }: { children: ReactNode }) {
               <img
                 src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="Nisuwa Cartel"
-                className="w-9 h-9 rounded-full ring-1 ring-primary/40 group-hover:ring-primary transition-all duration-300 drop-shadow-[0_0_8px_rgba(21,195,214,0.6)]"
+                className="w-9 h-9 rounded-full ring-1 ring-primary/40 group-hover:ring-primary transition-all duration-300 drop-shadow-[0_0_8px_rgba(218,165,32,0.6)]"
               />
               <span className="font-display font-bold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 uppercase">
                 Nisuwa Cartel
