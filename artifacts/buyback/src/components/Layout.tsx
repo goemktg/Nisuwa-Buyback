@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "wouter";
-import { Hexagon, Activity } from "lucide-react";
+import { Activity } from "lucide-react";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -24,7 +24,11 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-              <Hexagon className="w-8 h-8 text-primary group-hover:text-primary-foreground fill-primary/10 group-hover:fill-primary transition-all duration-300 drop-shadow-[0_0_8px_rgba(21,195,214,0.6)]" />
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Nisuwa Cartel"
+                className="w-9 h-9 rounded-full ring-1 ring-primary/40 group-hover:ring-primary transition-all duration-300 drop-shadow-[0_0_8px_rgba(21,195,214,0.6)]"
+              />
               <span className="font-display font-bold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 uppercase">
                 Nisuwa Cartel
               </span>
