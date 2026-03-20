@@ -36,10 +36,10 @@ export default function Home() {
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight drop-shadow-lg uppercase text-white">
-            <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Appraisal</span>
+            Contract <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Appraisal</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
-            아래에 아이템을 붙여넣으면 Jita 시세와 바이백 견적을 확인할 수 있습니다.
+            아래에 아이템 목록을 붙여넣으면 Jita 시세 기준으로 감정 결과를 확인할 수 있습니다.
           </p>
         </div>
 
