@@ -2,10 +2,12 @@ import { useState, useMemo } from "react";
 import { useSearch, useLocation } from "wouter";
 import LZString from "lz-string";
 import { motion } from "framer-motion";
-import { useAppraiseItems, useGetBuybackRates } from "@workspace/api-client-react";
+import { useAppraiseItems } from "@workspace/api-client-react";
 import { Layout } from "@/components/Layout";
 import { formatIsk } from "@/lib/utils";
-import { FileText, Cpu, ArrowRight, AlertCircle, Copy, CheckCircle2, DollarSign, ShieldCheck } from "lucide-react";
+import { FileText, Cpu, ArrowRight, AlertCircle, Link2, CheckCircle2, DollarSign, ShieldCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { getRateReason } from "@/lib/rate-reason";
 import type { AppraisalResult } from "@workspace/api-client-react";
 
 function BuybackInput() {
@@ -113,25 +115,12 @@ function BuybackInput() {
   );
 }
 
-function BuybackResult({ parsedData }: { parsedData: AppraisalResult }) {
+function BuybackResult({ parsedData, searchString }: { parsedData: AppraisalResult; searchString: string }) {
   const [copied, setCopied] = useState(false);
-  const { data: ratesData } = useGetBuybackRates();
 
-  const handleCopyBuyback = () => {
-    const lines = [
-      `[Nisuwa Cartel Buyback Contract]`,
-      `Total Buyback Value: ${formatIsk(parsedData.totalBuybackValue)}`,
-      ``,
-      `--- Items to Contract ---`,
-    ];
-    parsedData.items.forEach((item) => {
-      lines.push(
-        `${item.quantity.toLocaleString()}x ${item.typeName} — ${formatIsk(item.buybackPrice)} (${(item.buybackRate * 100).toFixed(0)}%)`,
-      );
-    });
-    lines.push(``);
-    lines.push(`Contract this to Nisuwa Cartel Buyback for ${formatIsk(parsedData.totalBuybackValue)}`);
-    navigator.clipboard.writeText(lines.join("\n"));
+  const handleCopyLink = () => {
+    const url = `${window.location.origin}${import.meta.env.BASE_URL.replace(/\/$/, "")}/buyback?${searchString}`;
+    navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -173,7 +162,7 @@ function BuybackResult({ parsedData }: { parsedData: AppraisalResult }) {
               </div>
             </div>
             <button
-              onClick={handleCopyBuyback}
+              onClick={handleCopyLink}
               className="group px-8 py-4 bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/40 rounded-xl font-display font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(218,165,32,0.4)] flex items-center gap-2"
             >
               {copied ? (
@@ -183,16 +172,16 @@ function BuybackResult({ parsedData }: { parsedData: AppraisalResult }) {
                 </>
               ) : (
                 <>
-                  <Copy className="w-5 h-5" />
-                  Copy Contract Info
+                  <Link2 className="w-5 h-5" />
+                  Copy Contract Link
                 </>
               )}
             </button>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <motion.div variants={itemVariants} className="lg:col-span-3 space-y-4">
+        <div>
+          <motion.div variants={itemVariants} className="space-y-4">
             <h3 className="text-xl font-display font-bold uppercase tracking-wider text-white/90 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-primary" /> Items & Buyback Prices
             </h3>
@@ -229,9 +218,16 @@ function BuybackResult({ parsedData }: { parsedData: AppraisalResult }) {
                             {formatIsk(item.pricePerUnit)}
                           </td>
                           <td className="px-6 py-4 text-center">
-                            <span className="inline-flex items-center px-2 py-1 rounded bg-primary/10 text-xs text-primary border border-primary/20">
-                              {(item.buybackRate * 100).toFixed(0)}%
-                            </span>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <span className="inline-flex items-center px-2 py-1 rounded bg-primary/10 text-xs text-primary border border-primary/20 cursor-help">
+                                  {(item.buybackRate * 100).toFixed(0)}%
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p className="font-mono text-xs">{getRateReason(item.marketGroupName, item.buybackRate)}</p>
+                              </TooltipContent>
+                            </Tooltip>
                           </td>
                           <td className="px-6 py-4 text-right text-muted-foreground">
                             {formatIsk(buybackPerUnit)}
@@ -255,38 +251,6 @@ function BuybackResult({ parsedData }: { parsedData: AppraisalResult }) {
                   </tfoot>
                 </table>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-display font-bold uppercase tracking-wider text-white/90">Rate Schedule</h3>
-            <div className="bg-card/60 backdrop-blur-xl border border-border/60 rounded-xl p-5 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full filter blur-xl" />
-              {ratesData ? (
-                <div className="space-y-4 font-mono text-sm relative z-10">
-                  <div className="flex justify-between items-center pb-3 border-b border-border/60">
-                    <span className="text-muted-foreground/80 uppercase text-xs tracking-widest">Default</span>
-                    <span className="font-bold text-white/90">{(ratesData.defaultRate * 100).toFixed(0)}%</span>
-                  </div>
-                  <div className="space-y-3 pt-1">
-                    {ratesData.rates.map((rate, i) => (
-                      <div key={i} className="flex justify-between items-center group">
-                        <span className="text-muted-foreground group-hover:text-foreground transition-colors text-xs">{rate.groupName}</span>
-                        <span className="font-bold text-primary text-xs">{(rate.rate * 100).toFixed(0)}%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="animate-pulse space-y-4 relative z-10">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="flex justify-between items-center">
-                      <div className="h-3 bg-white/5 rounded w-1/2"></div>
-                      <div className="h-3 bg-primary/10 rounded w-8"></div>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </motion.div>
         </div>
@@ -313,5 +277,5 @@ export default function BuybackPage() {
     return <BuybackInput />;
   }
 
-  return <BuybackResult parsedData={parsedData} />;
+  return <BuybackResult parsedData={parsedData} searchString={searchString} />;
 }
