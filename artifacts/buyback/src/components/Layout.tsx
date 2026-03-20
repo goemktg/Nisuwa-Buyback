@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Link } from "wouter";
-import { Activity } from "lucide-react";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -34,10 +33,6 @@ export function Layout({ children }: { children: ReactNode }) {
               </span>
             </Link>
             <div className="flex items-center gap-4">
-              <div className="hidden sm:flex items-center text-xs font-mono text-primary/80 uppercase tracking-widest border border-primary/20 px-3 py-1.5 rounded bg-primary/5">
-                <Activity className="w-3 h-3 mr-2 animate-pulse text-primary" />
-                Online
-              </div>
             </div>
           </div>
         </div>

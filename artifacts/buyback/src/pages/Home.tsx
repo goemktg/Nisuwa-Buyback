@@ -36,10 +36,10 @@ export default function Home() {
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight drop-shadow-lg uppercase text-white">
-            Contract <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Appraisal</span>
+            <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Appraisal</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
-            Paste your items below to get Jita prices and a buyback quote.
+            아래에 아이템을 붙여넣으면 Jita 시세와 바이백 견적을 확인할 수 있습니다.
           </p>
         </div>
 
@@ -50,7 +50,7 @@ export default function Home() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 text-primary font-mono text-sm uppercase tracking-widest">
                 <FileText className="w-4 h-4" />
-                <span>Item List</span>
+                <span>아이템 목록을 붙여넣으세요</span>
               </div>
               <div className="text-xs text-muted-foreground font-mono">
                 Format: [Item Name] [Quantity]

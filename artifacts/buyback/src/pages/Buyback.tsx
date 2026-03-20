@@ -94,7 +94,7 @@ export default function BuybackPage() {
 
         <motion.div variants={itemVariants} className="text-center">
           <h1 className="text-3xl md:text-4xl font-display font-bold mb-3 tracking-tight uppercase text-white">
-            Buyback <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Contract</span>
+            <span className="text-primary drop-shadow-[0_0_15px_rgba(218,165,32,0.5)]">Buyback</span>
           </h1>
           <p className="text-muted-foreground font-mono text-sm max-w-xl mx-auto">
             Create an in-game contract with the items below for the listed buyback value.
