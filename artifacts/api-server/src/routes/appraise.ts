@@ -5,7 +5,7 @@ import {
   resolveTypeIds,
   getJitaPrices,
   getTypeInfo,
-  isSleeperComponent,
+  isNpcBuyItem,
   getNpcBuyPrice,
 } from "../lib/eve-api.js";
 import { getBuybackRate } from "../lib/buyback-rates.js";
@@ -54,11 +54,11 @@ router.post("/appraise", async (req, res): Promise<void> => {
     }
   }
 
-  const sleeperTypeIds = resolvedTypeIds.filter((id) => {
+  const npcBuyTypeIds = resolvedTypeIds.filter((id) => {
     const info = typeInfoMap.get(id);
-    return info && isSleeperComponent(info.marketGroupName);
+    return info && isNpcBuyItem(info.marketGroupName);
   });
-  const npcPricePromises = sleeperTypeIds.map(async (id) => {
+  const npcPricePromises = npcBuyTypeIds.map(async (id) => {
     const price = await getNpcBuyPrice(id);
     return [id, price] as const;
   });
@@ -88,15 +88,15 @@ router.post("/appraise", async (req, res): Promise<void> => {
     const marketGroupName = info?.marketGroupName ?? "Unknown";
 
     let pricePerUnit: number;
-    if (isSleeperComponent(marketGroupName) && npcPriceMap.has(typeId)) {
+    if (isNpcBuyItem(marketGroupName) && npcPriceMap.has(typeId)) {
       pricePerUnit = npcPriceMap.get(typeId)!;
     } else {
       const priceData = prices.get(typeId);
-      pricePerUnit = priceData ? priceData.sell.min : 0;
+      pricePerUnit = priceData ? priceData.buy.max : 0;
     }
 
     const totalPrice = pricePerUnit * item.quantity;
-    const buybackRate = getBuybackRate(marketGroupName);
+    const buybackRate = getBuybackRate(item.name);
     const buybackPrice = totalPrice * buybackRate;
 
     resultItems.push({

@@ -200,6 +200,12 @@ export function isSleeperComponent(marketGroupName: string): boolean {
   return marketGroupName.includes(SLEEPER_COMPONENT_MARKER);
 }
 
+const NPC_BUY_MARKERS = ["Sleeper Components", "AEGIS"];
+
+export function isNpcBuyItem(marketGroupName: string): boolean {
+  return NPC_BUY_MARKERS.some((m) => marketGroupName.includes(m));
+}
+
 export async function getNpcBuyPrice(typeId: number): Promise<number | null> {
   const cacheKey = `npc-buy-${typeId}`;
   const cached = npcPriceCache.get(cacheKey);

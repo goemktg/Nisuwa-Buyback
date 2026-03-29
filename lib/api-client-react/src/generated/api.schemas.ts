@@ -35,8 +35,8 @@ export interface AppraisalResult {
 }
 
 export interface BuybackRateEntry {
-  groupName: string;
   rate: number;
+  items: string[];
 }
 
 export interface BuybackRates {

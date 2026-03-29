@@ -141,14 +141,16 @@ components:
     BuybackRateEntry:
       type: object
       properties:
-        groupName:
-          type: string
         rate:
           type: number
           format: double
+        items:
+          type: array
+          items:
+            type: string
       required:
-        - groupName
         - rate
+        - items
     BuybackRates:
       type: object
       properties:

@@ -206,8 +206,8 @@ export default function AppraisalResultPage() {
                     <div className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1">By Category</div>
                     {ratesData.rates.map((rate, i) => (
                       <div key={i} className="flex justify-between items-center group">
-                        <span className="text-muted-foreground group-hover:text-foreground transition-colors">{rate.groupName}</span>
-                        <span className="font-bold text-primary">{(rate.rate * 100).toFixed(0)}%</span>
+                        <span className="text-muted-foreground group-hover:text-foreground transition-colors">{(rate.rate * 100).toFixed(0)}%</span>
+                        <span className="font-mono text-xs text-muted-foreground/60">{rate.items.length} items</span>
                       </div>
                     ))}
                   </div>

@@ -53,8 +53,8 @@ export const GetBuybackRatesResponse = zod.object({
   defaultRate: zod.number(),
   rates: zod.array(
     zod.object({
-      groupName: zod.string(),
       rate: zod.number(),
+      items: zod.array(zod.string()),
     }),
   ),
 });

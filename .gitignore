@@ -52,3 +52,11 @@ Thumbs.db
 **/.replit-artifact/
 artifacts/mockup-sandbox/
 attached_assets/
+
+.copilot-memory/
+__pycache__/
+CONTRIBUTING.md
+references/*
+!references/.gitkeep
+temp/*
+!temp/.gitkeep
